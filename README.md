@@ -97,56 +97,57 @@ All the SQL Queries along with their sample results can be accessed [here](https
 
 Following are the findings of the analysis - 
 
-- Only **4** out of **7** tables, namely *dailyActivity*, *hourActivity*, *minuteActivity* and *minuteMET* has data from **33** different users. *sleepInfo* has data from only **24** users, *heartRate* has data from only **14** users and *weightInfo* has data from only **8** users. (*[Query 1]()*)
-- Not all users have complete data. Only **29** users in *dailyActivity*, *hourActivity*, *minuteActivity* and *minuteMET*, **12** in *sleepInfo*, **9** in *heartRate* and **2** in *weightInfo* has data of atleast 3 weeks. (*[Query 2]()*)
-- Only **3** users has data in all the tables. And, only **1** user has data in all tables of atleast 3 weeks. (*[Query 4]() & [Query 5]()*)
+- Only **4** out of **7** tables, namely *dailyActivity*, *hourActivity*, *minuteActivity* and *minuteMET* has data from **33** different users. *sleepInfo* has data from only **24** users, *heartRate* has data from only **14** users and *weightInfo* has data from only **8** users. (*[Query 1](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#1-query-to-find-number-of-users-and-records-in-each-table)*)
+- Not all users have complete data. Only **29** users in *dailyActivity*, *hourActivity*, *minuteActivity* and *minuteMET*, **12** in *sleepInfo*, **9** in *heartRate* and **2** in *weightInfo* has data of atleast 3 weeks. (*[Query 2](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#2-query-to-find-number-of-users-in-each-table-with-atleast-3-weeks-of-records)*)
+- Only **3** users has data in all the tables. And, only **1** user has data in all tables of atleast 3 weeks. (*[Query 4](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#4-query-to-find-number-of-users-common-among-various-tables) & [Query 5](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#5-query-to-find-number-of-users-common-among-various-tables-with-atleast-3-weeks-of-records)*)
 
-- The table *dailyActivity* has several errors and outliers (*[Query 7]()*) -
+- The table *dailyActivity* has several errors and outliers (*[Query 7](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#7-query-to-find-errors-and-outliers-for-various-metrics-in-dailyactivity) - [Query 9]()*) -
   - **4** records have the value of 'Calories' equals *Zero*.
   - **79** records have the value of 'Sedentary Minutes' equals *1440*.
   - **7** records have the value of 'Sedentary Minutes' equals *1440* along with more than *1000* 'Steps'.
   - **462** records have missing minutes data i.e., Sum of 'Very Active Minutes', 'Fairly Active Minutes', 'Lightly Active Minutes' and 'Sedentary Minutes' was *less than 1440*.
+  - On an average, users have **4** - **7** Hours of missing data for minutes.
   - **15** records have different values of 'Tracker Distance' and 'Total Distance'.
-  - **222** records have the value of 'Total Distance' less than the sum of 'Very Active Distance', 'Moderately Active Distance', 'Lightly Active Distance' and 'Sedentary Distance'. Whereas, **414** have the value of 'Total Distance' more than the Sum.
+  - **222** records have the value of 'Total Distance' less than the sum of 'Very Active Distance', 'Moderately Active Distance', 'Lightly Active Distance' and 'Sedentary Distance'. Whereas, **414** have the value of 'Total Distance' more than the Sum (although, the difference wasn't very significant).
 
-- The table *hourActivity* has several errors and outliers (*[Query 12]()*) -
+- The table *hourActivity* has several errors and outliers (*[Query 12](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#12-query-to-find-errors-and-outliers-for-various-metrics-in-houractivity)*) -
   - **1** record has the value of 'Intensity' equals *Zero* but the number of 'Steps' was more than Zero.
   - **201** records hve the number of 'Steps' equals *Zero* but the value of 'Intensity' was more than Zero.
 
-- The table *minuteActivity* has several errors and outliers (*[Query 14]()*) -
+- The table *minuteActivity* has several errors and outliers (*[Query 14](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#14-query-to-find-errors-and-outliers-for-various-metrics-in-minuteactivity)*) -
   - **286** records have the value of 'Intensity' equals *Zero* but the number of 'Steps' was more than Zero.
   - **13854** records hve the number of 'Steps' equals *Zero* but the value of 'Intensity' was more than Zero.
   - **7** records have the value of 'Calories' as Zero.
 
-- Average Value of MET (Metabolic Equivalent) for each user in *minuteMET* was more than **10** and were as high as **19**. Such high values of MET is only possible in hardcore physical activities such as Competitive Soccer, Uphill Cycling, Sprinting etc. Such high values of Average MET clearly indicates it was not recorded accurately by the device. (*[Query 15]()*)
+- Average Value of MET (Metabolic Equivalent) for each user in *minuteMET* was more than **10** and were as high as **19**. Such high values of MET is only possible in hardcore physical activities such as Competitive Soccer, Uphill Cycling, Sprinting etc. Such high values of Average MET clearly indicates it was not recorded accurately by the device. (*[Query 15](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#15-query-to-find-average-values-of-various-metrics-in-minutemet)*)
   > Since the values of MET was not recorded accurately, *minuteMET* will not be used for any further analysis.
 
-- The table *heartRate* has several errors and outliers (*[Query 17]()*) -
+- The table *heartRate* has several errors and outliers (*[Query 17](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#17-query-to-find-errors-and-outliers-for-various-metrics-in-heartrate)*) -
   - **23** records have the value of 'Heart Rate' less than *40*.
   - **13** records have the value of 'Heart Rate' more than *200*.
 
-- The table *weightInfo* has several points of concerns (*[Query 21]() & [Query 22]()*) -
+- The table *weightInfo* has several points of concerns (*[Query 21](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#21-query-to-find-number-of-records-for-each-kind-of-report) & [Query 22](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#22-query-to-find-users-and-their-number-of-non-manual-reports)*) -
   - **41** out of *67* records have the data through Manual Reporting.
   - Only *3* users (One with **24** records, and two with **1** record each) doesn't have the Manually reported weight data.
   > Since the *weightInfo* table has incomplete and mostly manual data, it is subject to bias and hence will not be used for any further analysis.
 
-- In the table *dailyActivty*, **6** users have an extra record of 1 day each when compared to aggregated table of *hourActivity* (and *minuteActivity*). It means that there is no corresponding record in the *hourActivity* (and *minuteActivity*) table of those 6 extra records. (*[Query 23]() & [Query 24]()*)
+- In the table *dailyActivty*, **6** users have an extra record of 1 day each when compared to aggregated table of *hourActivity* (and *minuteActivity*). It means that there is no corresponding record in the *hourActivity* (and *minuteActivity*) table of those 6 extra records. (*[Query 23](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#23-query-to-find-users-for-whom-number-of-days-in-houractivity-is-not-equal-to-number-of-days-in-dailyactivity) & [Query 24](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#24-query-to-find-users-for-whom-number-of-days-in-houractivity-is-not-equal-to-number-of-days-in-minuteactivity)*)
 
-- The common table of *minuteActivity* and *heartRate* has several errors and outliers (*[Query 26]()*) -
+- The common table of *minuteActivity* and *heartRate* has several errors and outliers (*[Query 26](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#26-query-to-find-errors-and-outliers-for-various-metrics-in-the-common-table-of-heartrate-and-minuteactivity)*) -
   - **1142** records have 'Heart Rate' less than *60*, but 'Calories' more than *3*.
   - **16** records have 'Heart Rate' more than *150*, but 'Calories' less than *5*.
   - **24** records have 'Heart Rate' more than *100*, but 'Calories' less than *1*.
 
-- The common table of *minuteActivity* and *heartRate* has several errors and outliers (*[Query 28]()*) -
+- The common table of *minuteActivity* and *heartRate* has several errors and outliers (*[Query 28](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#28-query-to-find-errors-and-outliers-for-various-metrics-in-the-common-table-of-heartrate-and-houractivity)*) -
   - **1** records has 'Heart Rate' less than *60*, but 'Calories' more than *180*.
   - **1** records has 'Heart Rate' more than *150*, but 'Calories' less than *300*.
   - **2** records have 'Heart Rate' more than *100*, but 'Calories' less than *60*.
 
-- The common table of *dailyActivity* and *sleepInfo* has several errors and outliers (*[Query 30]()*) -
+- The common table of *dailyActivity* and *sleepInfo* has several errors and outliers (*[Query 30](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#30-query-to-find-errors-and-outliers-for-various-metrics-in-the-common-table-of-sleepinfo-and-dailyactivity)*) -
   - **57** records have the value for 'Total Time In Bed' more than the corresponding 'Sedentary Minutes', while **17** records have the value for 'Total Time In Bed' more than the corresponding sum of 'Very Active Minutes', 'Fairly Active Minutes', 'Lightly Active Minutes' and 'Sedentary Minutes'.
   - **44** records have the value for 'Total Time Asleep' more than the corresponding 'Sedentary Minutes', while **11** records have the value for 'Total Time Asleep' more than the corresponding sum of 'Very Active Minutes', 'Fairly Active Minutes', 'Lightly Active Minutes' and 'Sedentary Minutes'.
 
-- The common table of *dailyActivity*, *hourActivity* and *minuteActivity* has several errors and outliers (*[Query 31]()*) -
+- The common table of *dailyActivity*, *hourActivity* and *minuteActivity* has several errors and outliers (*[Query 31](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#31-query-to-find-errors-and-outliers-for-various-metrics-in-the-tables-dailyactivity-houractivity-and-minuteactivity)*) -
   - **418** records in *dailyActivity* have the value of 'Calories' more than the corresponding aggregated value from *hourActivity*, whereas it is less in **384** records.
   - **191** records in *dailyActivity* have the value of 'Calories' more than the corresponding aggregated value from *minuteActivity*, whereas it is less in **743** records.
   - **159** records in *dailyActivity* have the value of 'Steps' more than the corresponding aggregated value from *hourActivity*.
@@ -169,7 +170,7 @@ Following are the findings of the analysis -
 
 --
 
-For the purpose of visualization, a Subset Data of **dailyActivity**, **hourActivity**, **heartRate**, **sleepInfo**, combined table of **dailyActivity** & **heartRate**, combined table of **dailyActivity** & **sleepInfo** and combined table of **hourActivity** & **heartRate**, conataining records of only those users of whom we have data of atleast 3 weeks or more was saved. It was done to prevent any potential skewness due to incomplete records. (*[Query 32]() - [Query 38]()*)
+For the purpose of visualization, a Subset Data of **dailyActivity**, **hourActivity**, **heartRate**, **sleepInfo**, combined table of **dailyActivity** & **heartRate**, combined table of **dailyActivity** & **sleepInfo** and combined table of **hourActivity** & **heartRate**, conataining records of only those users of whom we have data of atleast 3 weeks or more was saved. It was done to prevent any potential skewness due to incomplete records. (*[Query 32](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#32-query-to-filter-data-of-users-having-records-of-atleast-3-weeks-in-the-table-dailyactivity) - [Query 38](https://github.com/vnk-pathak/Bellabeat-Data-Analysis/blob/main/SQL%20Queries/BDA_SQL.md#38-query-to-filter-data-of-users-having-records-of-atleast-3-weeks-in-the-common-table-of-houractivity--heartrate)*)
 
 ----
 
@@ -288,18 +289,20 @@ For the purpose of visualization, a Subset Data of **dailyActivity**, **hourActi
 
 > Note : The following findings are only indicative. There isn't much data to strongly support them.
 
-1. Users in this Analysis mostly have a Sedentary Lifestyle. (*As shown by [viz 1]() and [viz 2]()*)
+1. Users in this Analysis mostly have a Sedentary Lifestyle. (*As shown by [viz 1](https://github.com/vnk-pathak/Bellabeat-Data-Analysis#1-on-an-average-an-user-spent-80-of-their-daily-time-in-sedentary-activities-followed-by-around-17-time-in-light-activities-also-an-user-travel-aroud-61-of-daily-distance-doing-light-activities-followed-by-around-28-distance-doing-high-intensity-activities) and [viz 2](https://github.com/vnk-pathak/Bellabeat-Data-Analysis#2-monday-has-the-highest-value-of-sedentary-minutes-spent-by-an-average-user-followed-by-friday-and-tuesday-repectively)*)
 
 2. There is an indication that Users in this analysis could either be Working Individuals having a Desk Job or College Students. This can be inferred from the following -
-    - Majority of time spent in a day (near about 15-16 hours) is in Sedentary Activities. This would include Sleeping and Sitting. (*As shown by [viz 1]() and [viz 2]()*)
-    - Weekdays has more Sedentary Time share as compared to Weekends. (*As shown by [viz 2]()*)
-    - Users are sleeping less on Weekdays as compared to Weekends. (*As shown by [viz 10]()*)
-    - Weekdays are comaparatively more active. That could be because of travelling to office/college. (*As shown by [viz 3]() and [viz 4]()*)
-    - On a daily basis, average Heart Rate is nearly same. That could be because of routine day to day activities. (*As shown by [viz 7]()*)
+    - Majority of time spent in a day (near about 15-16 hours) is in Sedentary Activities. This would include Sleeping and Sitting. (*As shown by [viz 1](https://github.com/vnk-pathak/Bellabeat-Data-Analysis#1-on-an-average-an-user-spent-80-of-their-daily-time-in-sedentary-activities-followed-by-around-17-time-in-light-activities-also-an-user-travel-aroud-61-of-daily-distance-doing-light-activities-followed-by-around-28-distance-doing-high-intensity-activities) and [viz 2](https://github.com/vnk-pathak/Bellabeat-Data-Analysis#2-monday-has-the-highest-value-of-sedentary-minutes-spent-by-an-average-user-followed-by-friday-and-tuesday-repectivelyhttps://github.com/vnk-pathak/Bellabeat-Data-Analysis#2-monday-has-the-highest-value-of-sedentary-minutes-spent-by-an-average-user-followed-by-friday-and-tuesday-repectively)*)
+    - Weekdays has more Sedentary Time share as compared to Weekends. (*As shown by [viz 2](https://github.com/vnk-pathak/Bellabeat-Data-Analysis#2-monday-has-the-highest-value-of-sedentary-minutes-spent-by-an-average-user-followed-by-friday-and-tuesday-repectively)*)
+    - Users are sleeping less on Weekdays as compared to Weekends. (*As shown by [viz 10](https://github.com/vnk-pathak/Bellabeat-Data-Analysis#10-on-an-average-users-sleep-most-on-the-weekends-with-saturday-and-sunday-being-the-top-2-days-respectively)*)
+    - Weekdays are comaparatively more active. That could be because of travelling to office/college. (*As shown by [viz 3](https://github.com/vnk-pathak/Bellabeat-Data-Analysis#3-tuesday-is-the-most-active-day-in-terms-of-distance-travelled-and-number-of-steps-taken-followed-by-saturday-and-thursday-respectively-while-in-a-day-9th-hour-to-20th-hour-is-the-most-active-time-in-terms-of-steps-taken-with-18th-to-20th-hours-being-the-top-3-hours) and [viz 4](https://github.com/vnk-pathak/Bellabeat-Data-Analysis#4-tuesday-has-the-highest-caloric-expenditure-followed-by-saturday--friday-respectively-although-the-difference-isnt-very-significant-while-in-a-day-9th-hour-to-21st-hour-has-the-majority-caloric-expenditure-with-18th-to-20th-hours-being-the-top-3-hours)*)
+    - On a daily basis, average Heart Rate is nearly same. That could be because of routine day to day activities. (*As shown by [viz 7](https://github.com/vnk-pathak/Bellabeat-Data-Analysis#7-on-an-average-heart-rate-of-users-is-nearly-same-on-all-days-with-miniscule-varitions)*)
 
-3. Trends in Calorie Expenditure is as per expectations. It is not showing any unexplainable pattern or behaviour. (*As shown by [viz 5]() and [viz 6]()*)
+3. Trends in Calorie Expenditure is as one would expect. It is not showing any unexplainable pattern or behaviour. (*As shown by [viz 5](https://github.com/vnk-pathak/Bellabeat-Data-Analysis#5-calorie-expenditure-is-directly-propotional-to-distance-travelled-and-number-of-steps-taken-both-in-daily-and-hourly-timeframe) and [viz 6](https://github.com/vnk-pathak/Bellabeat-Data-Analysis#6-calorie-expenditure-is-directly-propotional-to-the-time-spent-in-various-types-of-activities-but-is-inversely-proportional-to-time-spent-in-sedentary-activities-with-a-weak-negative-correlation)*)
 
-4. Trends of Sleep Time with respect to Distance is as per expectaions. But a negative correlation between Sleep Time and Sedentary Time is an unexplainable pattern since sleeping is a part of Sedentary Time. This coul be because of less data points (because very few people recorded their sleep activity). (*As shown by [viz 11]()*)
+4. Trends for Heart Rate is as one would expect. It is not showing any unexplainable pattern or behaviour. (*As shown by [viz 8](https://github.com/vnk-pathak/Bellabeat-Data-Analysis#8-on-a-daily-timeframe-heart-rate-is-not-heavily-affected-by-time-spent-in-various-activities-although-it-has-weak-positive-correlation-with-distance-travelled-and-number-of-steps-taken) and [viz 9](https://github.com/vnk-pathak/Bellabeat-Data-Analysis#9-on-an-hourly-timeframe-heart-rate-has-significant-variations-in-a-day-7th-to-21st-hour-has-above-average-heart-rate-it-also-has-strong-positive-correlation-with-calories-burned-and-number-of-steps-taken)*)
+
+5. Trends of Sleep Time with respect to Distance is as one would expect. But a negative correlation between Sleep Time and Sedentary Time is an unexplainable pattern since sleeping is a part of Sedentary Time. This coul be because of less data points (because very few people recorded their sleep activity). (*As shown by [viz 11](https://github.com/vnk-pathak/Bellabeat-Data-Analysis#11-time-asleep-has-weak-negative-correlation-with-distance-travelled-and-time-spent-in-various-activities)*)
 ----
 
 ## Recommendations
